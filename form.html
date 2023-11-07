@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validaion</title>
+</head>
+<body>
+    <form name="myform"  onsubmit="validateForm()" method="post">
+    <label for="Name">Name</label>
+    <input type="text" name="username">
+    <input type="submit" value="submit">
+    </form>
+</body>
+
+<script>
+    function validateForm(){
+        let get = document.forms["myform"]["username"].value
+        if(get == ""){
+            alert("Username is empty")
+            return false;
+        }
+        console.log(get)
+    }
+
+</script>
+</html>
