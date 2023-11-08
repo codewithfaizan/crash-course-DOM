@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>parent-child</title>
+  </head>
+  <body>
+    <ul id="menu">
+      <li>Home</li>
+      <li>Product</li>
+      <li>About us</li>
+    </ul>
+    <button onclick="add()">Add</button>
+    <button onclick="remove()">Remove 2nd</button>
+    <button onclick="removeLast()">Remove last</button>
+    <button onclick="replace()">Replace</button>
+
+    <hr />
+    <br />
+
+    <p id="select">Hi faizan</p>
+    <p id="select">Hi form</p>
+    <button onclick="addbefore()">Click</button>
+
+    <hr />
+    <br />
+  </body>
+
+  <script>
+    function add() {
+      let intro = document.getElementById("menu");
+      // console.log(intro);
+      let list = document.createElement("li");
+      // console.log(list)
+      let tag = (list.createTextNode = "Contact");
+      list.append(tag);
+      intro.append(list);
+    }
+
+    function remove() {
+      let value = document.getElementById("menu");
+      let item = value.firstElementChild.nextElementSibling;
+      console.log(item);
+
+      value.removeChild(item);
+    }
+    function removeLast() {
+      let value = document.getElementById("menu");
+      let item = value.lastElementChild;
+      console.log(item);
+
+      value.removeChild(item);
+    }
+
+    function replace() {
+      let value = document.getElementById("menu");
+      let list = document.createElement("li");
+      console.log(list);
+      let post = value.firstElementChild.nextElementSibling;
+      list.textContent = "Change";
+      let change = value.replaceChild(list, post);
+      console.log(change);
+    }
+
+    function addbefore() {
+      let value = document.getElementById("select");
+      value.textContent = "Hi Space";
+      let post = value.firstElementChild;
+      value.insertBefore(value, post);
+    }
+
+
+    
+  </script>
+</html>
