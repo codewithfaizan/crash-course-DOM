@@ -113,10 +113,9 @@
     });
 
     const output = document.getElementById("output");
-    console.log(output.value);
+    // console.log(output.value);
 
     const form = document.getElementById("calc_form");
-
     const operand_btns = document.querySelectorAll("button[data-type=operand]");
     // console.log(operand_btns);
 
@@ -134,12 +133,52 @@
         } else {
           output.value = output.value + "" + e.target.value;
         }
-        // console.log(output.value)
+        // console.log(output.value);
       });
     });
 
-   
+    const operator_btns = document.querySelectorAll(
+      "button[data-type=operator]"
+    );
+    // console.log(operator_btns);
+    let equation = [];
 
- 
+    operator_btns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.currentTarget.classList.add("active");
+        switch (e.target.value) {
+          case "invert":
+            output.value = parseFloat(output.value) * -1;
+            // console.log(output.value)
+            break;
+          case "%":
+            output.value = parseFloat(output.value) / 100;
+            break;
+          case "=":
+            equation.push(output.value);
+            // console.log(equation);
+            output.value = eval(equation.join(""));
+            console.log(output.value);
+
+            equation = []
+            break;
+            default :
+
+            let last_item = equation[equation.length - 1];
+            console.log(last_item)
+
+            if(["/", "*", "+", "-"].includes(last_item)&& is_operator){
+              equation.pop();
+              equation.push(e.target.value)
+            } else {
+              equation.push(output.value);
+              equation.push(e.target.value);
+              console.log(equation)
+            }
+            is_operator = true;
+            break
+        }
+      });
+    });
   </script>
 </html>
